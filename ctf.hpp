@@ -13,6 +13,7 @@ struct structured_arg{
     std::string content;
 };
 
+/// This is the IMPORTANT STRUCT!
 // args and flags struct = the main return product
 struct flag_content{
     std::vector<std::string> v;
@@ -24,10 +25,30 @@ struct flag_content{
 
     void process_loop();
     std::string dump_args();
+    int num_of_args();
+    int num_of_flags();
 };
 
 structured_arg make_arg(bool is_flg, std::string flg, std::string cont) {
     return structured_arg{is_flg, flg, cont};
+}
+
+/// way to access the number of args and flags easily
+// get the number of args as an int
+int flag_content::num_of_args() {
+    int result = 0;
+    for (structured_arg entry : this->arg_lst) {
+        if (!entry.is_flag) {result++;}
+    }
+    return result;
+}
+// get the number of flags as an int
+int flag_content::num_of_flags() {
+    int result = 0;
+    for (structured_arg entry : this->arg_lst) {
+        if (entry.is_flag) {result++;}
+    }
+    return result;
 }
 
 /// for debugging

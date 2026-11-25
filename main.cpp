@@ -19,5 +19,8 @@ int main(int argc, char *argv[]) {
     std::string arg_dump = args.dump_args();
     std::cout << "Dumping arg content:\n" << arg_dump << "\n";
 
+    std::cout << "Number of args:\n" << args.num_of_args() << "\n";
+    std::cout << "Number of flags:\n" << args.num_of_flags() << "\n";
+
     return 0;
 }
